@@ -1,0 +1,21 @@
+query RunInput {
+  cart {
+    lines {
+      id
+      quantity
+      spressoPrice: attribute(key: "_spressoPrice") {
+        value
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          spressoCostList: metafield(namespace: "spresso", key: "prices") {
+              type
+              value
+          }
+        }
+      }
+    }
+  }
+}
