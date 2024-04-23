@@ -18,7 +18,6 @@
     "graphql-codegen": "graphql-codegen",
     "vite": "vite"
   },
-  "type": "module",
   "dependencies": {
     "@prisma/client": "^5.8.0",
     "@remix-run/dev": "^2.7.1",
