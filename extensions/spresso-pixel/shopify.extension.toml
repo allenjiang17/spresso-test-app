@@ -1,0 +1,30 @@
+type = "web_pixel_extension"
+name = "spresso-pixel"
+
+runtime_context = "strict"
+
+[customer_privacy]
+analytics = true
+marketing = false
+preferences = false
+sale_of_data = "disabled"
+
+[settings]
+type = "object"
+
+[settings.fields.orgID]
+name = "Org ID"
+description = "Spresso Organization ID"
+type = "single_line_text_field"
+validations =  [
+  { name = "min", value = "1" }
+]
+
+[settings.fields.endpoint]
+name = "API Endpoint"
+description = "Spresso API Endpoint URL"
+type = "single_line_text_field"
+validations =  [
+  { name = "min", value = "1" }
+]
+

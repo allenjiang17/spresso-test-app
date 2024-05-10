@@ -14,7 +14,12 @@ import {
   InlineStack,
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
+import { createApp } from "@shopify/app-bridge";
+import { getSessionToken } from "@shopify/app-bridge/utilities";
 
+const appBridge = createApp({
+  apiKey: "48c0fb286b75d656dbb93fb019e253ea",
+})
 
 const SPRESSO_FUNCTION_NAME = "spresso-test-price-transform";
 
@@ -104,6 +109,9 @@ export default function Index() {
                   <Button loading={isLoading} onClick={createCartTransform}>
                     Create Cart Transform Function
                   </Button>
+                  <Button loading={isLoading} onClick={generateAccessToken}>
+                    Generate Access Token
+                  </Button>
                 </InlineStack>
               </BlockStack>
             </Card>
@@ -165,6 +173,38 @@ async function createCartTransform(admin) {
 }
 
 async function generateAccessToken() {
+
+  const sessionToken = await getSessionToken(appBridge);
+
+  const url = `spresso-test-store.myshopify.com/admin/oauth/access_token`; // Replace `shop` with a variable that contains your shop name.
+  const headers = {
+    "Content-Type": "application/json"
+  };
+  const body = JSON.stringify({
+    "client_id": "48c0fb286b75d656dbb93fb019e253ea",
+    "client_secret": "e7ba23bfa40fc70f779d8440eb81c653",
+    "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+    "subject_token": sessionToken, // Ensure `sessionToken` is defined and contains the correct value.
+    "subject_token_type": "urn:ietf:params:oauth:token-type:id_token",
+    "requested_token_type": "urn:shopify:params:oauth:token-type:offline-access-token"
+  });
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST', // Specify that this is a POST request.
+      headers: headers,
+      body: body
+    });
+    const data = await response.json(); // Assuming the server responds with JSON.
+    console.log(data);
+  } catch (error) {
+    console.error('Error making the request:', error);
+  }
+
+  shopify.toast.show(JSON.stringify(data));
+
+
+  return data;
 
 }
 

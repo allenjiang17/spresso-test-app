@@ -8,7 +8,6 @@ import { authenticate } from "../shopify.server";
 
 export const loader = async ({ request }) => {
   await authenticate.admin(request);
-
   return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
 };
 

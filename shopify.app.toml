@@ -2,7 +2,7 @@
 
 client_id = "48c0fb286b75d656dbb93fb019e253ea"
 name = "spresso-test-app"
-application_url = "https://floyd-obtain-moore-synopsis.trycloudflare.com"
+application_url = "https://geometry-pour-lying-seed.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = "write_cart_transforms,write_products"
 
 [auth]
 redirect_urls = [
-  "https://floyd-obtain-moore-synopsis.trycloudflare.com/auth/callback",
-  "https://floyd-obtain-moore-synopsis.trycloudflare.com/auth/shopify/callback",
-  "https://floyd-obtain-moore-synopsis.trycloudflare.com/api/auth/callback"
+  "https://geometry-pour-lying-seed.trycloudflare.com/auth/callback",
+  "https://geometry-pour-lying-seed.trycloudflare.com/auth/shopify/callback",
+  "https://geometry-pour-lying-seed.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
